@@ -1,4 +1,5 @@
-//CONSTRAINT FUNCTIONS
+// CONSTRAINT FUNCTIONS
+// Returns true if the constraint fails; false otherwise
 var A_G = function(assignment) {return assignment["A"]!== null && assignment["G"]!== null && !(assignment["A"] >= assignment["G"])}
 var A_H = function(assignment) {return assignment["A"]!== null && assignment["H"]!== null && !(assignment["A"] < assignment["H"])}
 var F_B = function(assignment) {return assignment["F"]!== null && assignment["B"]!== null && !(Math.abs(assignment["F"]-assignment["B"]) === 1)}
@@ -17,12 +18,14 @@ var C_F = function(assignment) {return assignment["C"]!== null && !assignment["F
 var D_F = function(assignment) {return assignment["D"]!== null && !assignment["F"]!== null && !(assignment["D"] !== assignment["F"])}
 var E_F = function(assignment) {return assignment["E"]!== null && !assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1 || assignment["E"] === assignment["F"])}
 
+// CSP Object with variables, domain and constraint functions
 var CSP = {
   variable: ["A","B","C","D","E","F","G","H"],
   domain: [1,2,3,4],
   constraints: [A_G, A_H, F_B, G_H, G_C, H_C, H_D, D_G, D_C, E_C, E_D, E_H, G_F, H_F, C_F, D_F, E_F]
 }
 
+// Initial object with assignments initialized to null
 var initialAssignment = {
     A: null,
     B: null,
@@ -34,35 +37,18 @@ var initialAssignment = {
     H: null,
 }
 
-//CONSTRAINT FUNCTIONS
-// var X_Y = function(assignment) {return (assignment["X"] !== null && assignment["Y"] !== null && assignment["X"] === assignment["Y"])}
-// var Y_Z = function(assignment) {return (assignment["Y"] !== null && assignment["Z"]!== null && assignment["Y"] === assignment["Z"])}
-
-// var CSP = {
-//   variable: ["X","Y","Z"],
-//   domain: ["t","f"],
-//   constraints: [X_Y, Y_Z]
-// }
-
-// var initialAssignment = {
-//     X: null,
-//     Y: null,
-//     Z: null,
-// }
-
-
-
-
-
-
+// Global 
 var solutions = []
 var failedCount = 0
 
+// DSP Pruning function
 function DFSPrune(assignment, CSP) {
 
+    //initialize frontier with initial assignment
     let frontier = []
     frontier.push(assignment)
 
+    //keep looping and checking assignments in the frontier until it is empty
     while (frontier.length !== 0) {
         // console.log({frontier: frontier})
         let currAssignment = frontier.pop()
