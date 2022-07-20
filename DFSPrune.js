@@ -1,22 +1,21 @@
-// CONSTRAINT FUNCTIONS
-// Returns true if the constraint has been violated
-var A_G = function(assignment) {return !assignment["A"] && !assignment["G"] && assignment["A"] < assignment["G"]}
-var A_H = function(assignment) {return !assignment["A"] && !assignment["H"] && assignment["A"] >= assignment["H"]}
-var F_B = function(assignment) {return !assignment["F"] && !assignment["B"] && Math.abs(assignment["F"]-assignment["B"]) !== 1}
-var G_H = function(assignment) {return !assignment["G"] && !assignment["H"] && assignment["G"] >= assignment["H"]}
-var G_C = function(assignment) {return !assignment["G"] && !assignment["C"] && Math.abs(assignment["G"]-assignment["C"]) !== 1}
-var H_C = function(assignment) {return !assignment["H"] && !assignment["C"] && (Math.abs(assignment["H"]-assignment["C"]) % 2) !== 0}
-var H_D = function(assignment) {return !assignment["H"] && !assignment["D"] && assignment["H"] === assignment["D"]}
-var D_G = function(assignment) {return !assignment["D"] && !assignment["G"] && assignment["D"] < assignment["G"]}
-var D_C = function(assignment) {return !assignment["D"] && !assignment["C"] && assignment["D"] === assignment["C"]}
-var E_C = function(assignment) {return !assignment["E"] && !assignment["C"] && assignment["E"] === assignment["C"]}
-var E_D = function(assignment) {return !assignment["E"] && !assignment["D"] && assignment["E"] >= assignment["D"]-1}
-var E_H = function(assignment) {return !assignment["E"] && !assignment["H"] && assignment["E"] === assignment["H"]-2}
-var G_F = function(assignment) {return !assignment["G"] && !assignment["F"] && assignment["G"] === assignment["F"]}
-var H_F = function(assignment) {return !assignment["H"] && !assignment["F"] && assignment["H"] === assignment["F"]}
-var C_F = function(assignment) {return !assignment["C"] && !assignment["F"] && assignment["C"] === assignment["F"]}
-var D_F = function(assignment) {return !assignment["D"] && !assignment["F"] && assignment["D"] === assignment["F"]}
-var E_F = function(assignment) {return !assignment["E"] && !assignment["F"] && (Math.abs(assignment["E"]-assignment["F"]) % 2) !== 1 || assignment["E"] !== assignment["F"]}
+//CONSTRAINT FUNCTIONS
+var A_G = function(assignment) {return assignment["A"]!== null && assignment["G"]!== null && !(assignment["A"] >= assignment["G"])}
+var A_H = function(assignment) {return assignment["A"]!== null && assignment["H"]!== null && !(assignment["A"] < assignment["H"])}
+var F_B = function(assignment) {return assignment["F"]!== null && assignment["B"]!== null && !(Math.abs(assignment["F"]-assignment["B"]) === 1)}
+var G_H = function(assignment) {return assignment["G"]!== null && assignment["H"]!== null && !(assignment["G"] < assignment["H"])}
+var G_C = function(assignment) {return assignment["G"]!== null && !assignment["C"]!== null && !(Math.abs(assignment["G"]-assignment["C"]) === 1)}
+var H_C = function(assignment) {return assignment["H"]!== null && !assignment["C"]!== null && !((Math.abs(assignment["H"]-assignment["C"]) % 2) === 0)}
+var H_D = function(assignment) {return assignment["H"]!== null && !assignment["D"]!== null && !(assignment["H"] !== assignment["D"])}
+var D_G = function(assignment) {return assignment["D"]!== null && !assignment["G"]!== null && !(assignment["D"] >= assignment["G"])}
+var D_C = function(assignment) {return assignment["D"]!== null && !assignment["C"]!== null && !(assignment["D"] !== assignment["C"])}
+var E_C = function(assignment) {return assignment["E"]!== null && !assignment["C"]!== null && !(assignment["E"] !== assignment["C"])}
+var E_D = function(assignment) {return assignment["E"]!== null && !assignment["D"]!== null && !(assignment["E"] < assignment["D"]-1)}
+var E_H = function(assignment) {return assignment["E"]!== null && !assignment["H"]!== null && !(assignment["E"] !== assignment["H"]-2)}
+var G_F = function(assignment) {return assignment["G"]!== null && !assignment["F"]!== null && !(assignment["G"] !== assignment["F"])}
+var H_F = function(assignment) {return assignment["H"]!== null && !assignment["F"]!== null && !(assignment["H"] !== assignment["F"])}
+var C_F = function(assignment) {return assignment["C"]!== null && !assignment["F"]!== null && !(assignment["C"] !== assignment["F"])}
+var D_F = function(assignment) {return assignment["D"]!== null && !assignment["F"]!== null && !(assignment["D"] !== assignment["F"])}
+var E_F = function(assignment) {return assignment["E"]!== null && !assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1 || assignment["E"] === assignment["F"])}
 
 var CSP = {
   variable: ["A","B","C","D","E","F","G","H"],
@@ -35,6 +34,7 @@ var initialAssignment = {
     H: null,
 }
 
+//CONSTRAINT FUNCTIONS
 // var X_Y = function(assignment) {return (assignment["X"] !== null && assignment["Y"] !== null && assignment["X"] === assignment["Y"])}
 // var Y_Z = function(assignment) {return (assignment["Y"] !== null && assignment["Z"]!== null && assignment["Y"] === assignment["Z"])}
 
@@ -64,7 +64,7 @@ function DFSPrune(assignment, CSP) {
     frontier.push(assignment)
 
     while (frontier.length !== 0) {
-        console.log({frontier: frontier})
+        // console.log({frontier: frontier})
         let currAssignment = frontier.pop()
 
         if (complete(currAssignment)){
@@ -101,9 +101,9 @@ function getNextVarToAssign(variable, assignment){
 
 
 function consistent(assignment, constraints) {
-    console.log("here")
   for (let i=0; i<constraints.length; i++) {
-    console.log({constraints: constraints[i]})
+    // console.log(constraints[i])
+    // console.log(constraints[i](assignment))
     if (constraints[i](assignment)) {
         // come in if constraint have been violated
       return false
