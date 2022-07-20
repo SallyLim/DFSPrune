@@ -16,7 +16,7 @@ var G_F = function(assignment) {return assignment["G"]!== null && !assignment["F
 var H_F = function(assignment) {return assignment["H"]!== null && !assignment["F"]!== null && !(assignment["H"] !== assignment["F"])}
 var C_F = function(assignment) {return assignment["C"]!== null && !assignment["F"]!== null && !(assignment["C"] !== assignment["F"])}
 var D_F = function(assignment) {return assignment["D"]!== null && !assignment["F"]!== null && !(assignment["D"] !== assignment["F"])}
-var E_F = function(assignment) {return assignment["E"]!== null && !assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1 || assignment["E"] === assignment["F"])}
+var E_F = function(assignment) {return assignment["E"]!== null && !assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1)}
 
 // CSP Object with variables, domain and constraint functions
 var CSP = {
@@ -50,7 +50,6 @@ function DFSPrune(assignment, CSP) {
 
     //keep looping and checking assignments in the frontier until it is empty
     while (frontier.length !== 0) {
-        // console.log({frontier: frontier})
         let currAssignment = frontier.pop()
 
         if (complete(currAssignment)){
