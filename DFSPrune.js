@@ -63,6 +63,7 @@ function DFSPrune(assignment, CSP) {
             //if not completed assignment yet, continue to add to the frontier
             let nextVariable = getNextVarToAssign(CSP["variable"], currAssignment)
             for (let i=0; i < CSP["domain"].length; i++) {
+                //deep copy of assignment
                 let clone = JSON.parse(JSON.stringify(currAssignment))
                 clone[nextVariable] = CSP["domain"][i]
                 if (consistent(clone, CSP["constraints"])){
