@@ -10,8 +10,8 @@ var H_D = function(assignment) {return assignment["H"]!== null && !assignment["D
 var D_G = function(assignment) {return assignment["D"]!== null && !assignment["G"]!== null && !(assignment["D"] >= assignment["G"])}
 var D_C = function(assignment) {return assignment["D"]!== null && !assignment["C"]!== null && !(assignment["D"] !== assignment["C"])}
 var E_C = function(assignment) {return assignment["E"]!== null && !assignment["C"]!== null && !(assignment["E"] !== assignment["C"])}
-var E_D = function(assignment) {return assignment["E"]!== null && !assignment["D"]!== null && !(assignment["E"] < assignment["D"]-1)}
-var E_H = function(assignment) {return assignment["E"]!== null && !assignment["H"]!== null && !(assignment["E"] !== assignment["H"]-2)}
+var E_D = function(assignment) {return assignment["E"]!== null && !assignment["D"]!== null && !(assignment["E"] < (assignment["D"]-1))}
+var E_H = function(assignment) {return assignment["E"]!== null && !assignment["H"]!== null && !(assignment["E"] !== (assignment["H"]-2))}
 var G_F = function(assignment) {return assignment["G"]!== null && !assignment["F"]!== null && !(assignment["G"] !== assignment["F"])}
 var H_F = function(assignment) {return assignment["H"]!== null && !assignment["F"]!== null && !(assignment["H"] !== assignment["F"])}
 var C_F = function(assignment) {return assignment["C"]!== null && !assignment["F"]!== null && !(assignment["C"] !== assignment["F"])}
@@ -37,7 +37,7 @@ var initialAssignment = {
     H: null,
 }
 
-// Global 
+// Global variables
 var solutions = []
 var failedCount = 0
 
@@ -76,6 +76,8 @@ function DFSPrune(assignment, CSP) {
 
 }
 
+// Gets the next variable that has not been assigned yet
+// Returns the variable
 function getNextVarToAssign(variable, assignment){
     for (let i = 0; i < variable.length; i++){
         if (assignment[variable[i]] === null){
@@ -84,24 +86,23 @@ function getNextVarToAssign(variable, assignment){
     }
 }
 
-
+// Returns true if assigned variables meet the constraints; false otherwise
 function consistent(assignment, constraints) {
   for (let i=0; i<constraints.length; i++) {
-    // console.log(constraints[i])
-    // console.log(constraints[i](assignment))
     if (constraints[i](assignment)) {
-        // come in if constraint have been violated
+      // comes into the if statement if constraint have been violated
       return false
     }
   }
   return true
 }
 
+// Returns true if all variables have been assigned; false otherwise
 function complete(assignment) {
   return Object.values(assignment).every(x => x !== null)
 }
 
-
+// Running the code and console.log to see the count of failed branches and solutions
 DFSPrune(initialAssignment,CSP)
 console.log([failedCount, solutions])
 
