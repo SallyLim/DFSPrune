@@ -4,19 +4,19 @@ var A_G = function(assignment) {return assignment["A"]!== null && assignment["G"
 var A_H = function(assignment) {return assignment["A"]!== null && assignment["H"]!== null && !(assignment["A"] < assignment["H"])}
 var F_B = function(assignment) {return assignment["F"]!== null && assignment["B"]!== null && !(Math.abs(assignment["F"]-assignment["B"]) === 1)}
 var G_H = function(assignment) {return assignment["G"]!== null && assignment["H"]!== null && !(assignment["G"] < assignment["H"])}
-var G_C = function(assignment) {return assignment["G"]!== null && !assignment["C"]!== null && !(Math.abs(assignment["G"]-assignment["C"]) === 1)}
-var H_C = function(assignment) {return assignment["H"]!== null && !assignment["C"]!== null && !((Math.abs(assignment["H"]-assignment["C"]) % 2) === 0)}
-var H_D = function(assignment) {return assignment["H"]!== null && !assignment["D"]!== null && !(assignment["H"] !== assignment["D"])}
-var D_G = function(assignment) {return assignment["D"]!== null && !assignment["G"]!== null && !(assignment["D"] >= assignment["G"])}
-var D_C = function(assignment) {return assignment["D"]!== null && !assignment["C"]!== null && !(assignment["D"] !== assignment["C"])}
-var E_C = function(assignment) {return assignment["E"]!== null && !assignment["C"]!== null && !(assignment["E"] !== assignment["C"])}
-var E_D = function(assignment) {return assignment["E"]!== null && !assignment["D"]!== null && !(assignment["E"] < (assignment["D"]-1))}
-var E_H = function(assignment) {return assignment["E"]!== null && !assignment["H"]!== null && !(assignment["E"] !== (assignment["H"]-2))}
-var G_F = function(assignment) {return assignment["G"]!== null && !assignment["F"]!== null && !(assignment["G"] !== assignment["F"])}
-var H_F = function(assignment) {return assignment["H"]!== null && !assignment["F"]!== null && !(assignment["H"] !== assignment["F"])}
-var C_F = function(assignment) {return assignment["C"]!== null && !assignment["F"]!== null && !(assignment["C"] !== assignment["F"])}
-var D_F = function(assignment) {return assignment["D"]!== null && !assignment["F"]!== null && !(assignment["D"] !== assignment["F"])}
-var E_F = function(assignment) {return assignment["E"]!== null && !assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1)}
+var G_C = function(assignment) {return assignment["G"]!== null && assignment["C"]!== null && !(Math.abs(assignment["G"]-assignment["C"]) === 1)}
+var H_C = function(assignment) {return assignment["H"]!== null && assignment["C"]!== null && !((Math.abs(assignment["H"]-assignment["C"]) % 2) === 0)}
+var H_D = function(assignment) {return assignment["H"]!== null && assignment["D"]!== null && !(assignment["H"] !== assignment["D"])}
+var D_G = function(assignment) {return assignment["D"]!== null && assignment["G"]!== null && !(assignment["D"] >= assignment["G"])}
+var D_C = function(assignment) {return assignment["D"]!== null && assignment["C"]!== null && !(assignment["D"] !== assignment["C"])}
+var E_C = function(assignment) {return assignment["E"]!== null && assignment["C"]!== null && !(assignment["E"] !== assignment["C"])}
+var E_D = function(assignment) {return assignment["E"]!== null && assignment["D"]!== null && !(assignment["E"] < (assignment["D"]-1))}
+var E_H = function(assignment) {return assignment["E"]!== null && assignment["H"]!== null && !(assignment["E"] !== (assignment["H"]-2))}
+var G_F = function(assignment) {return assignment["G"]!== null && assignment["F"]!== null && !(assignment["G"] !== assignment["F"])}
+var H_F = function(assignment) {return assignment["H"]!== null && assignment["F"]!== null && !(assignment["H"] !== assignment["F"])}
+var C_F = function(assignment) {return assignment["C"]!== null && assignment["F"]!== null && !(assignment["C"] !== assignment["F"])}
+var D_F = function(assignment) {return assignment["D"]!== null && assignment["F"]!== null && !(assignment["D"] !== assignment["F"])}
+var E_F = function(assignment) {return assignment["E"]!== null && assignment["F"]!== null && !((Math.abs(assignment["E"]-assignment["F"]) % 2) === 1)}
 
 // CSP Object with variables, domain and constraint functions
 var CSP = {
