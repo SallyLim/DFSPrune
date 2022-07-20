@@ -53,12 +53,14 @@ function DFSPrune(assignment, CSP) {
         let currAssignment = frontier.pop()
 
         if (complete(currAssignment)){
+            //if completed assignment, check if consistent, if so, then it is a solution
             if (consistent(currAssignment, CSP["constraints"])){
                 solutions.push(currAssignment)
             } else {
                 failedCount++
             }
         } else {
+            //if not completed assignment yet, continue to add to the frontier
             let nextVariable = getNextVarToAssign(CSP["variable"], currAssignment)
             for (let i=0; i < CSP["domain"].length; i++) {
                 let clone = JSON.parse(JSON.stringify(currAssignment))
