@@ -20,7 +20,7 @@ var E_F = function(assignment) {return assignment["E"]!== null && assignment["F"
 
 // CSP Object with variables, domain and constraint functions
 var CSP = {
-  variable: ["A","B","C","D","E","F","G","H"],
+  variable: ["F","H","C","D","G","E","A","B"],
   domain: [1,2,3,4],
   constraints: [A_G, A_H, F_B, G_H, G_C, H_C, H_D, D_G, D_C, E_C, E_D, E_H, G_F, H_F, C_F, D_F, E_F]
 }
@@ -50,7 +50,11 @@ function DFSPrune(assignment, CSP) {
 
     //keep looping and checking assignments in the frontier until it is empty
     while (frontier.length !== 0) {
+        console.log({Frontier: frontier})
+        
         let currAssignment = frontier.pop()
+
+        console.log({CurrentAssignment: currAssignment})
 
         if (complete(currAssignment)){
             //if completed assignment, check if consistent, if so, then it is a solution
